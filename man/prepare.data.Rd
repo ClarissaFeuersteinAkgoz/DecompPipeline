@@ -48,9 +48,9 @@ prepare.data(
 descriptive name of the analysis.}
 
 \item{sample.selection.col}{A column name in the phenotypic table of \code{rnb.set} used to selected a subset of samples for
-analysis that contain the string given in \code{sample.selection.col}.}
+analysis that contain the string given in \code{sample.selection.grep}.}
 
-\item{sample.selection.grep}{A string used for selecting samples in the column \code{sample.selection.grep}.}
+\item{sample.selection.grep}{A string used for selecting samples in the column \code{sample.selection.col}.}
 
 \item{pheno.columns}{Vector of column names in the phenotypic table of \code{rnb.set} that is kept and exported for further 
 exploration.}
