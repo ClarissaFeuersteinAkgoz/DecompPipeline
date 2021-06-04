@@ -46,20 +46,20 @@ This filtering step involves removing potentially unreliable and/or problematic 
 
 ### Array based data sets
 
-Filtering CpG sites of array based data sets (27k, 450k, EPIC) involves setting the minimum number of required beads on the chip (```MIN_N_BEADS```). Furthermore, low and high intensity outliers can be removed by a quantile approach, which removes the highest (```MAX_INT_QUANT```) and lowest quantile (```MIN_INT_QUANT```). In addition, all sites containing any missing value (```FILTER_NA```), outside of CpG context (```FILTER_CONTEXT```), mapping to an annotated Single Nucleotide Polymorphism (```FILTER_SNP```, ```snp.list```) and on the sex chromosomes (```FILTER_SOMATIC```) can be omitted. Further options are available and described in the function's documentation. The function also provides options to normalize data using the methods available in the *RnBeads* R package and will return the processed data set and further information on the steps executed.
+Filtering CpG sites of array based data sets (27k, 450k, EPIC) involves setting the minimum number of required beads on the chip (```min.n.beads```). Furthermore, low and high intensity outliers can be removed by a quantile approach, which removes the highest (```max.int.quant```) and lowest quantile (```min.int.quant```). In addition, all sites containing any missing value (```filter.na```), outside of CpG context (```filter.context```), mapping to an annotated Single Nucleotide Polymorphism (```filter.snp```, ```snp.list```) and on the sex chromosomes (```filter.sex.chromosomes```) can be omitted. Further options are available and described in the function's documentation. The function also provides options to normalize data using the methods available in the *RnBeads* R package and will return the processed data set and further information on the steps executed.
 
 
 ```r
 data("small.RnBeadSet")
-data.prep <- prepare_data(RNB_SET = rnb.set.example,
-                          NORMALIZATION = "wm.dasen",
-                          MIN_N_BEADS = 5,
-                          MIN_INT_QUANT = 0.05,
-                          MAX_INT_QUANT = 0.95,
-                          FILTER_NA = T,
-                          FILTER_SNP = T,
-                          FILTER_CONTEXT = FALSE,
-                          FILTER_SOMATIC = FALSE)
+data.prep <- prepare.data(rnb.set = rnb.set.example,
+                          normalization = "wm.dasen",
+                          min.n.beads = 5,
+                          min.int.quant = 0.05,
+                          max.int.quant = 0.95,
+                          filter.na = T,
+                          filter.snp = T,
+                          filter.context = FALSE,
+                          filter.sex.chromosomes = FALSE)
 names(data.prep)
 ```
 
@@ -75,7 +75,7 @@ For bisulfite sequencing data sets, different filtering criteria apply. First, a
 
 ```r
 rnb.set <- load.rnb.set(system.file("extdata/small_rnbSet.zip",package="DecompPipeline"))
-data.prep.bs <- prepare_data_BS(RNB_SET = rnb.set,
+data.prep.bs <- prepare_data_BS(rnb.set = rnb.set,
                                 MIN_COVERAGE = 5,
                                 MIN_COVG_QUANT = 0.1,
                                 MAX_COVG_QUANT = 0.9,
